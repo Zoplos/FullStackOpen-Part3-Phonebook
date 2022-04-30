@@ -1,6 +1,7 @@
 const express = require("express");
 const morgan = require("morgan");
 const app = express();
+const cors = require("cors");
 
 let persons = [
   {
@@ -27,6 +28,9 @@ let persons = [
 
 app.use(express.json());
 app.use(express.static("build"));
+
+app.use(cors());
+
 morgan.token("post", (req, res) => {
   if (req.method === "POST") {
     return JSON.stringify(req.body);
